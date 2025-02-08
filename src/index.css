@@ -1,0 +1,150 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-black text-white overflow-x-hidden;
+  }
+}
+
+@layer components {
+  .text-glitch-intro {
+    @apply relative text-white;
+    text-shadow: 
+      2px 2px #ff0000,
+      -2px -2px #00ff00,
+      0 0 20px rgba(255,255,255,0.5);
+  }
+
+  .animate-glitch-1 {
+    animation: glitch1 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+
+  .animate-glitch-2 {
+    animation: glitch2 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+
+  .glitch-text {
+    @apply relative font-mono;
+    text-shadow: 
+      -1px -1px #ff0000,
+      1px 1px #0000ff;
+  }
+  
+  .content-frame {
+    @apply rounded-lg border border-gray-800 bg-black/90 overflow-hidden;
+    box-shadow: 
+      0 0 30px rgba(0, 0, 255, 0.15),
+      inset 0 0 15px rgba(0, 0, 255, 0.1);
+  }
+
+  .marquee-wrapper {
+    @apply absolute inset-0;
+  }
+
+  .marquee-row {
+    @apply absolute w-full overflow-hidden;
+    height: 33vh;
+  }
+
+  .marquee-track {
+    @apply flex whitespace-nowrap;
+    animation: marquee 20s linear infinite;
+  }
+
+  .marquee-text {
+    @apply inline-block text-[20vh] font-black text-white/[0.03] mx-4;
+    font-family: "Arial Black", sans-serif;
+    letter-spacing: -0.05em;
+  }
+
+  .custom-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scroll-indicator {
+    @apply absolute right-0 top-0 w-[1px] h-full bg-gray-800;
+  }
+
+  .scroll-progress {
+    @apply absolute right-0 top-0 w-[1px] bg-gray-400 transition-all duration-200;
+  }
+}
+
+@keyframes glitch1 {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+    filter: blur(10px);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+  25% {
+    transform: translateX(2px);
+  }
+  35% {
+    transform: translateX(-2px);
+  }
+  65% {
+    transform: skewX(2deg);
+  }
+  75% {
+    transform: skewX(-1deg);
+  }
+  100% {
+    transform: skewX(0);
+  }
+}
+
+@keyframes glitch2 {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+    filter: blur(10px);
+  }
+  30% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+  55% {
+    transform: translateX(-2px);
+  }
+  65% {
+    transform: translateX(2px);
+  }
+  85% {
+    transform: skewX(-2deg);
+  }
+  95% {
+    transform: skewX(1deg);
+  }
+  100% {
+    transform: skewX(0);
+  }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+img {
+  @apply transition-all duration-500;
+}
+
+.grayscale {
+  filter: grayscale(100%) brightness(0.8) contrast(1.2);
+}
